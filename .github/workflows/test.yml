@@ -22,41 +22,54 @@ jobs:
         cd hw
         forge install
       id: test
-
-    ## Problem Template
-    # - name: Problem <id>
-    #   id: problem-<id>
-    #   uses: classroom-resources/autograding-command-grader@v1
-    #   with:
-    #     test-name: Problem <id>
-    #     command: cd hw && forge test --mt <foundry-test-name>
-    #     timeout: <time-limit>
-    #     max-score: <max-score>
-
     
     ## Modify Problem 1 Configuration
-    - name: Problem 1
+    - name: Untrusted Oracle
       id: problem-1
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: Problem 1
-        command: cd hw && forge test --mt test_Increment
+        test-name: Untrusted Oracle
+        command: cd hw && forge test --mc TrustedOracleTest --mt testExploit
         timeout: 10
         max-score: 10
 
     ## Modify Problem 2 Configuration
-    - name: Problem 2
+    - name: Rich NFT
       id: problem-2
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: Problem 2
-        command: cd hw && forge test --mt testFuzz_SetNumber
+        test-name: Rich NFT
+        command: cd hw && forge test --mc RichNFTTest --mt testExploit
         timeout: 10
-        max-score: 10
+        max-score: 15
 
-    ## Add More Problem Below
-    ## Problem 3 ...
-    ## Problem 4 ...
+    ## Modify Problem 3 Configuration
+    - name: MultiPair
+      id: problem-3
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: MultiPair
+        command: cd hw && forge test --mc MultiPairTest --mt testExploit
+        timeout: 10
+        max-score: 20
+
+    - name: Sasha
+      id: problem-4
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Sasha
+        command: cd hw && forge test --mc SashaTest --mt testExploit
+        timeout: 10
+        max-score: 25
+    
+    - name: SashaV2
+      id: problem-5
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: SashaV2
+        command: cd hw && forge test --mc SashaV2Test --mt testExploit
+        timeout: 10
+        max-score: 30
 
     ## Modify Autograding Reporter
     ## If new problems are added, remember to add new grading actions below
@@ -65,5 +78,8 @@ jobs:
       env:
         PROBLEM-1_RESULTS: "${{steps.problem-1.outputs.result}}"
         PROBLEM-2_RESULTS: "${{steps.problem-2.outputs.result}}"
+        PROBLEM-3_RESULTS: "${{steps.problem-3.outputs.result}}"
+        PROBLEM-4_RESULTS: "${{steps.problem-4.outputs.result}}"
+        PROBLEM-5_RESULTS: "${{steps.problem-5.outputs.result}}"
       with:
-        runners: problem-1, problem-2
+        runners: problem-1, problem-2, problem-3, problem-4, problem-5
