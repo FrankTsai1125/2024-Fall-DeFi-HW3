@@ -46,27 +46,9 @@ contract TrustedOracle {
     }
 }
 
-interface AggregatorV3Interface {
-    function latestRoundData()
-        external
-        view
-        returns (uint80 roundId, int256 answer, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound);
-}
-
+// TODO: Complete the chainlink oracle implementation
 contract ChainlinkOracle {
-    AggregatorV3Interface internal priceFeed;
+    constructor(address) {}
 
-    constructor(address addr) {
-        priceFeed = AggregatorV3Interface(addr);
-    }
-
-    function getPrice() public view returns (uint256) {
-        (, int256 price,,,) = priceFeed.latestRoundData();
-
-        return uint256(price);
-    }
-
-    function getDecimals() public pure returns (uint8) {
-        return 8;
-    }
+    function getPrice() public view returns (uint256) {}
 }

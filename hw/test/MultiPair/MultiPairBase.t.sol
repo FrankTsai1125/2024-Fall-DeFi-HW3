@@ -36,7 +36,7 @@ contract MultiPairBaseTest is Test {
         uint256 tokensBefore = tokenB.balanceOf(arbitrager);
         _;
         uint256 tokensAfter = tokenB.balanceOf(arbitrager);
-        assertGt(tokensAfter, 20 ether);
+        assertGt(tokensAfter, 22 ether);
         vm.stopPrank();
     }
 
