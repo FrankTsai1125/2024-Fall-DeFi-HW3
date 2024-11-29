@@ -29,7 +29,7 @@ contract TrustedOracleBaseTest is Test {
 
         address priceFeed0 = 0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6; // USDC <> USD
         oracle0 = new ChainlinkOracle(priceFeed0);
-
+        
         address priceFeed1 = 0x3E7d1eAB13ad0104d2750B8863b489D65364e32D; // USDT <> USD
         oracle1 = new ChainlinkOracle(priceFeed1);
 
